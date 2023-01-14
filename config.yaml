@@ -1,0 +1,9 @@
+credentials:
+  usernames:
+    HG:
+      name: HG
+      password: '$2b$12$Jn5igP4OAoL25wbiJxmiAOvrHZJlHmTSUXYyzfTO3ZeHNAamN5Goy'
+cookie:
+  expiry_days: 30
+  key: random_signature_key
+  name: random_cookie_name
