@@ -29,12 +29,13 @@ st.markdown(
     }
     .css-ocqkz7 {
     background-color: #f7f6f5;
-    margin: 10px 100px;
+    margin: 5px 0px 0px 0px;
     border-radius: 10px;
     }
-    .css-1r6slb0 {
-        margin: 5px;
-    }
+    #.css-1r6slb0 {
+    #    margin: 5px;
+    #    background-color:white;
+    #}
     a:link {
     color: black;
     text-decoration: none;
@@ -44,8 +45,8 @@ st.markdown(
     a:visited {
       color: black;
       text-decoration: none;
-    }
-    """,
+    }</style>"""
+    ,
     unsafe_allow_html=True
 )
 
@@ -60,8 +61,8 @@ def update_data(df,filename):
 
 def get_container():
     z = st.container()
-    _,a,b,_ = z.columns([1,12,8,1])
-    return a,b
+    _,a,b,_ = z.columns([1,24,16,1])
+    return a,b,
     
 
 def get_teaser(url):
@@ -128,7 +129,6 @@ if authentication_status:
 elif authentication_status==False:
     st.sidebar.write("HEllo")
 
-    
 try:
     for index,row in df.iterrows():
         a,b = get_container()
