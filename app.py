@@ -119,7 +119,6 @@ if authentication_status:
                             "image":[image] + [each for each in df["image"].values],
                             "timestamp":[time.time()] + [each for each in df["timestamp"].values]
                           })
-        st.dataframe(df)
         update_data(df,'data.csv')
         
 
