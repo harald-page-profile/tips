@@ -17,7 +17,7 @@ if 'sidebar_state' not in st.session_state:
 
 st.set_page_config(layout="wide", initial_sidebar_state='collapsed',
         page_title="Edvins läslista",
-        page_icon="🗞️")
+        page_icon="https://static01.nyt.com/favicon.ico")
 st.title("Edvins läslista")
 
 
@@ -66,7 +66,7 @@ def get_container():
     
 
 def get_teaser(url):
-    HEADERS = ({'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36','Accept-Language': 'en-US, en;q=0.5'})
+    HEADERS = ({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0','Accept-Language': 'en-US, en;q=0.5'})
     response = requests.get(url,headers=HEADERS)
     soup = BeautifulSoup(response.text, features="html.parser")
     metas = soup.find_all('meta')
@@ -85,8 +85,6 @@ def get_teaser(url):
         img = img[0]
         if("https://" not in img):
             m = re.search('https?://([A-Za-z_0-9.-]+).*', url)
-            if m:
-                print(m.group(1))
             img = "https://" + m.group(1) + "/" + img.split("/")[-1]
     else:
         img=""
@@ -126,8 +124,6 @@ if authentication_status:
     if st.sidebar.button("Reset list"):
         df = pd.DataFrame({"url":[],"title":[],"description":[],"image":[],"timestamp":[]})
         update_data(df,'data.csv')
-elif authentication_status==False:
-    st.sidebar.write("HEllo")
 
 try:
     for index,row in df.iterrows():
@@ -138,9 +134,7 @@ try:
             a.write(row["description"])
         if(row["image"] and isinstance(row["image"],str)):
             b.write("")
-            b.image(row["image"])
-        print(row["image"])
-        a.write("")
+            b.markdown('<image src="' + row["image"] + '" style="width:100%;">',unsafe_allow_html=True)
         b.write("")
 except ValueError:
     st.title("Enter your name and message into the sidebar, and post!")
